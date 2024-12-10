@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auto Number Changer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+    }
+    .container {
+      text-align: center;
+      background-color: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 18px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    h1 {
+      font-size: 50px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1 id="numberDisplay">1</h1>
+    <button onclick="toggleChange()">Click to Stop</button>
+  </div>
+
+  <script>
+    let currentNumber = 1;
+    let intervalId;
+    let isRunning = true;
+
+    function changeNumber() {
+      currentNumber++;
+      if (currentNumber > 10) {
+        currentNumber = 1;
+      }
+      document.getElementById("numberDisplay").textContent = currentNumber;
+    }
+
+    function toggleChange() {
+      if (isRunning) {
+        clearInterval(intervalId);
+        document.querySelector("button").textContent = "Click to Start";
+      } else {
+        intervalId = setInterval(changeNumber, 1000);
+        document.querySelector("button").textContent = "Click to Stop";
+      }
+      isRunning = !isRunning;
+    }
+
+    // Start auto changing the number
+    intervalId = setInterval(changeNumber, 100);
+
+  </script>
+
+</body>
+</html>
+
+
